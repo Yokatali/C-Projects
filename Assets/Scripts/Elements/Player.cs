@@ -29,11 +29,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            gameObject.SetActive(false);
-        }
-
         if (other.CompareTag("Collactable"))
         {
             other.gameObject.SetActive(false);
@@ -43,6 +38,14 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Door") && isAppleCollected)
         {
             gameDirector.levelComplated();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
         }
     }
 
