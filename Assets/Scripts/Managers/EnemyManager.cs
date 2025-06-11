@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public Player1 player;
+    public Player player;
     public List<Enemy> enemies;
     public Enemy enemyPrefab;
 
-    public int enemyCount;
+    public Vector2 enemyCount;
 
     public void RestartEnemyManagaer()
     {
@@ -17,12 +17,12 @@ public class EnemyManager : MonoBehaviour
 
     private void GenerateEnemies()
     {
-        for (int i = 0; i < enemyCount; i++)
+        var randomEnemyCount = UnityEngine.Random.Range(enemyCount.x, enemyCount.y);
+        for (int i = 0; i < randomEnemyCount; i++)
         {
-            var enemyXPos = 0f;
-            enemyXPos = Random.Range(-2.5f, 2.5f);
+            var enemyXPos = UnityEngine.Random.Range(2.3f, 10f);;
             var newEnemy = Instantiate(enemyPrefab);
-            newEnemy.transform.position = new Vector3(5, 0, -6 + i * 1.5f);
+            newEnemy.transform.position = new Vector3(enemyXPos, 0, -5 + i * 1.5f);
             enemies.Add(newEnemy);
             newEnemy.StartEnemy(player);
         }
@@ -30,7 +30,11 @@ public class EnemyManager : MonoBehaviour
 
     private void DeleteEnemies()
     {
-        
+        foreach (var e in enemies)
+        {
+            Destroy(e.gameObject);
+        }
+        enemies.Clear();
     }
 
     public void StopEnemies()

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player1 : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float speed;
 
@@ -16,7 +16,15 @@ public class Player1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+    }
+
+    public void RestartPlayer()
+    {
+        gameObject.SetActive(true);
         _rb = GetComponent<Rigidbody>();
+        transform.position = new Vector3(6.5f, 0.5f, -10f);
+        isAppleCollected = false;
     }
 
     private void OnTriggerEnter(Collider other)

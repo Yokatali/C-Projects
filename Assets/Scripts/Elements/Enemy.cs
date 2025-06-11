@@ -4,9 +4,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
-    private Player1 _player;
+    private Player _player;
 
-    public void StartEnemy(Player1 player)
+    public void StartEnemy(Player player)
     {
         _player = player;
     }
